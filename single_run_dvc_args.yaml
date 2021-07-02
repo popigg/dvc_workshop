@@ -1,0 +1,26 @@
+stages:
+  create_partitions:
+    cmd: python prepare_data.py
+    deps:
+      - data
+      - prepare_data.py
+    outs:
+      - partitions/train.csv
+      - partitions/validation.csv
+  train:
+    cmd: python train_args.py -e 200 -lr 0.3
+    deps:            
+      - partitions/train.csv
+    outs:
+      - models/linear_regression_args.pt
+      - metrics/train_loss_args.png
+    metrics:
+      - metrics/train_loss_args.txt:
+            cache: false
+  eval:
+    cmd: python eval_args.py -e 200 -lr 0.3
+    deps:            
+      - partitions/validation.csv
+      - models/linear_regression_args.pt
+    outs:
+    -  evaluations/chart_args.png

@@ -1,0 +1,46 @@
+stages:
+  create_partitions:
+    cmd: python prepare_data.py
+    deps:
+      - data
+      - prepare_data.py
+    outs:
+      - partitions/train.csv
+      - partitions/validation.csv
+  train:
+    foreach:
+      - epochs: 500
+        lr: 0.003
+      - epochs: 1000
+        lr: 0.001
+      - epochs: 1500
+        lr: 0.0001
+      - epochs: 2000
+        lr: 0.03
+    do:
+      cmd: python train.py -e ${item.epochs} -lr ${item.lr}  
+      deps:
+        - partitions/train.csv
+      outs:
+        - models/linear_regression_${item.epochs}_${item.lr}.pt
+        - metrics/train_loss_${item.epochs}_${item.lr}.png
+      metrics:
+        - metrics/train_loss_${item.epochs}_${item.lr}.txt:
+            cache: false
+  eval:
+    foreach:
+      - epochs: 500
+        lr: 0.003
+      - epochs: 1000
+        lr: 0.001
+      - epochs: 1500
+        lr: 0.0001
+      - epochs: 2000
+        lr: 0.03
+    do:
+      cmd: python eval.py -e ${item.epochs} -lr ${item.lr}
+      deps:        
+        - partitions/validation.csv
+        - models/linear_regression_${item.epochs}_${item.lr}.pt
+      outs:
+      -  evaluations/chart_${item.epochs}_${item.lr}.png

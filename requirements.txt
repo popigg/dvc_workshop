@@ -1,0 +1,6 @@
+dvc==2.4.3
+matplotlib==3.4.2
+numpy==1.21.0
+pandas==1.2.5
+scikit-learn==0.24.2
+torch==1.9.0
