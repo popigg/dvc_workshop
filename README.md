@@ -1,8 +1,8 @@
 # DVC workshop
 
-En este repositorio vamos a tratar el taller de datos y ciclo de vida.
+En este repositorio vamos a tratar el taller del ciclo de vida de los datos.
 
-Como fuimos repasando en el taller hay una división por ficheros para poder llevar a cobo nuestra tarea.
+Como fuimos repasando en el taller hay una división por ficheros para poder llevar a cabo nuestra tarea.
 
 ## Estructura del proyecto
 
