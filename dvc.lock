@@ -50,18 +50,18 @@ stages:
     cmd: python prepare_data.py
     deps:
     - path: data
-      md5: f4e3d943267c3279edc9137a9e67d7b9.dir
-      size: 181196
-      nfiles: 1
+      md5: a2d6138fe9bb427ff72139c2ae30497f.dir
+      size: 223824
+      nfiles: 3
     - path: prepare_data.py
       md5: 19f742de47483d3035c7efe47982e927
       size: 825
     outs:
     - path: partitions/train.csv
-      md5: f8a9c6aab158fbcc01fe67151f1f8ea9
-      size: 640050
+      md5: 48804ddda0b22c96ad39d9ccd33b2986
+      size: 640100
     - path: partitions/validation.csv
-      md5: 7b8ddf072c275da9df2ecfc713ec37c2
+      md5: b7e768f6d31107b29aba86dd29e119bb
       size: 160000
   build@0:
     cmd: python train.py 500 0.003
@@ -242,28 +242,28 @@ stages:
     cmd: python eval_single.py
     deps:
     - path: models/linear_regression.pt
-      md5: 38631a2a34abf29e292b0683e3349018
+      md5: 417d9de3545a3353932fdcae425b0d67
       size: 1127
     - path: partitions/validation.csv
-      md5: 7b8ddf072c275da9df2ecfc713ec37c2
+      md5: b7e768f6d31107b29aba86dd29e119bb
       size: 160000
     outs:
     - path: evaluations/chart.png
-      md5: 8a1aa37eecb6057651c8850604c286f8
-      size: 19944
+      md5: b1ef66ceb94249fe95c9d8aecdfb253b
+      size: 20405
   train_single:
     cmd: python train_single.py
     deps:
     - path: partitions/train.csv
-      md5: f8a9c6aab158fbcc01fe67151f1f8ea9
-      size: 640050
+      md5: 48804ddda0b22c96ad39d9ccd33b2986
+      size: 640100
     outs:
     - path: metrics/train_loss.png
-      md5: 76a0cf66ad5041deedd101bd630e03b3
-      size: 18572
+      md5: 2ec76963695e8fb9b1d87310a9eb4ed1
+      size: 19325
     - path: metrics/train_loss.txt
-      md5: 55702cadacc642a5592c415d6e290d78
-      size: 17884
+      md5: 7d58b595540e88b689095df75a146532
+      size: 17794
     - path: models/linear_regression.pt
-      md5: 38631a2a34abf29e292b0683e3349018
+      md5: 417d9de3545a3353932fdcae425b0d67
       size: 1127
