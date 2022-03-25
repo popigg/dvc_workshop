@@ -1,10 +1,26 @@
-# DVC workshop
+# Taller sobre datos y ciclo de vida del aprendizaje automático
 
-En este repositorio vamos a tratar el taller del ciclo de vida de los datos.
+## Resumen
 
-Como fuimos repasando en el taller hay una división por ficheros para poder llevar a cabo nuestra tarea.
+Cuando trabajamos en equipo con proyectos de aprendizaje automático la mejora de los resultados de nuestros experimentos implica sumergirnos en un ciclo de vida iterativo. En este proceso de repetición hay varios denominadores comunes, uno de ellos son los datos.
 
-## Estructura del proyecto
+Los conjuntos de datos que usamos para nuestros experimentos no son estáticos, podemos añadir nuevas muestas o tomar las muestras agrupadas de forma diferente.
+Para mantener la coherencia dentro de un equipo en estas iteraciones y saber con qué grupo de datos y con qué algoritmos se han obtenido cada uno de los resultados, necesitamos controlar estos procesos.
+
+Pero, ¿hay alguna herramienta que nos ayude en esto?
+
+## Objetivos
+
+En este taller vamos a hacer girar el ciclo de vida del aprendizaje automático en torno el dato. Aprenderemos a hacer control de versiones de los datos y almacenaremos en remoto para trabajar de forma colaborativa.
+
+
+## Qué vamos a hacer
+
+## Código
+
+En este repositorio trabajaremos con las herramientas 
+
+### Estructura del proyecto
 
 - prepare_data.py: Este fichero se encargará de leer los datos, normalizarlos y generar una partición de entrenamiento y otra de validación
 - model.py: este fichero contiene el modelo en pytorch de una regresión lineal de las dimensiones que especifiquemos
@@ -14,7 +30,7 @@ Como fuimos repasando en el taller hay una división por ficheros para poder lle
 
 Os recomiendo clonar el repositorio es vuestras máquinas y a partir de aquí hacer el taller en un directorio diferente.
 
-## Configuración del entorno virtual
+### Configuración del entorno virtual
 
 Pasos a seguir:
 
@@ -29,7 +45,7 @@ Pasos a seguir:
 
 >Para continuar tenemos que tener el entorno virtual con lo anteriormente detallado. En vuestro caso con conda activo para el directorio de trabajo en Visual Studio sería lo más sencillo.
 
-## Ejecución del código repositorio
+### Inicialización
 
 1. Abrimos Visual Studio Code y copiamos los ficheros como hemos sugerido
 2. Guardaremos en el proyecto en una capeta que podamos localizar despues desde el terminal de Anaconda Navigator
@@ -44,7 +60,7 @@ Pasos a seguir:
     dvc push data # ahora debería dejarnos subir nuestros datos a google drive
     ```
 
-## Ejecutamos los pipelines
+### Ejecutamos los pipelines
 
  Una vez que tenemos los datos y los ficheros creados necesitaremos crear las carpetas: partitions, metrics, models y evaluations.
 
