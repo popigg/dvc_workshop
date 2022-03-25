@@ -26,19 +26,19 @@ def main(epochs, lr):
         train_losses = []
 
         for epoch in range(num_epochs):
-            #forward feed
+            # forward feed
             y_pred = model(X_train.requires_grad_())
 
-            #calculate the loss
+            # calculate the loss
             loss= l(y_pred, y_train)
 
-            #backward propagation: calculate gradients
+            # backward propagation: calculate gradients
             loss.backward()
 
-            #update the weights
+            # update the weights
             optimizer.step()
 
-            #clear out the gradients from the last step loss.backward()
+            # clear out the gradients from the last step loss.backward()
             optimizer.zero_grad()
 
             train_losses.append(loss.item())
