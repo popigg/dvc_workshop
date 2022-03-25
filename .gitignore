@@ -1,8 +1,8 @@
 .venv/
-/data
 __pycache__/
-/models
-/evaluations
-/metrics
-/partitions
+data
+models
+evaluations
+metrics
+partitions
 
