@@ -39,15 +39,15 @@ Antes de entrar en el código, vamos a dar un primer paso entendiendo la estruct
 
 ### El código
 
-- _prepare_data.py_: Este fichero se encargará de leer los datos, normalizarlos y generar una partición de entrenamiento y otra de validación
+- _prepare_data.py_ se encargará de leer los datos en crudo, normalizarlos y generar las particiones para entrenar train.csv y otra de validación validation.csv
 
-- _model.py_: este fichero contiene el modelo en pytorch de una regresión lineal de las dimensiones que especifiquemos
+- _model.py_ contiene el modelo en pytorch de una regresión lineal
 
-- _train_single.py_, train_args.py y train.py: son el mismo fichero al que le vamos añadiendo mejoras. Lo he puesto en 3 para que podáis comparar facilmente. Se encarga de entrenar la red con los datos de entrenamiento, generar un modelo, graba las métricas y genera una imagen con la gráfica de pérdida.
+- _train_single.py, train_args.py y train.py_ es el mismo fichero al que vamos cambiando. Se encarga de entrenar la red con los datos de entrenamiento, generar un modelo, consigue las métricas y genera una imagen con la gráfica de pérdida
 
-- _eval_single.py_, eval_args.py y eval.py: son el mismo fichero mejorado. Lo he puesto en 3 para poder comparar de forma sencilla. Se encarga de tomar el modelo generado e introducir los datos de validación. La salida que producirá será el azul los valores de etiqueta y en rojo la predicción.
+- _eval_single.py, eval_args.py y eval.py_ es el mismo fichero con cambios. Se encarga de tomar el modelo generado e introducir los datos de evaluación. La imagen que producirá muestra en azul los valores de las etiqueta y en rojo las predicciones
 
-- _dvc.yaml_ este fichero está vacío y hay que rellenarlo según el pipeline que ejecutéis con el contenido de single_run_dvc.yaml, single_run_dvc_args.yaml o loop_template_dvc.yaml. En cada caso reemplazáis el contenido de dvc.yaml con el contenido de cada uno de estos ficheros y estaría listo para ejecutar.
+- _dvc.yaml_ está vacío y vamos llenándolo con _single_run_dvc.yaml, single_run_dvc_args.yaml o loop_template_dvc.yaml_ según la versión que vayamos a ejecutar
 
 Os recomiendo clonar el repositorio es vuestras máquinas y a partir de aquí hacer el taller en un directorio diferente.
 
@@ -55,42 +55,49 @@ Os recomiendo clonar el repositorio es vuestras máquinas y a partir de aquí ha
 
 Pasos a seguir:
 
-1. Creamos en Anaconda Navigator un nuevo entorno virtual.
-2. Instalamos las dependencias y paquetes siguientes: pandas, numpy, pytorch, sklearn, matplotlib
-3. Abriremos un terminal desde el entorno virtual creado en anaconda y instalaremos los paquetes de dvc porque posiblemente no estarán listados dentro de Anaconda
+1. Dentro de Anaconda Navigator en **Environments** importamos el fichero _conda-environment.yaml_
+2. Las dependencias más importantes son pandas, numpy, pytorch, sklearn, matplotlib, dvc, dvc[gdrive]
+También puedes instalarlas con pip
 
     ```python
-    pip install dvc
-    pip install "dvc[gdrive]"
+    python3.8 -m venv .venv
+    source .venv/bin/activate
+    pip install pandas numpy pytorch sklearn matplotlib dvc dvc[gdrive]     
     ```
 
->Para continuar tenemos que tener el entorno virtual con lo anteriormente detallado. En vuestro caso con conda activo para el directorio de trabajo en Visual Studio sería lo más sencillo.
+3. Ahora abriendo el terminal puedes haber clonado con git repositorio o bien puedes haber descargado un zip.
+
+>Para que DVC funcione es imprescindible tener git instalado
 
 ### Inicialización
 
-1. Abrimos Visual Studio Code y copiamos los ficheros como hemos sugerido
-2. Guardaremos en el proyecto en una capeta que podamos localizar despues desde el terminal de Anaconda Navigator
-3. Abrimos una nueva ventana en el terminal desde anaconda navigator
-4. Seguimos con los siguientes comandos
+1. Hemos descargado de alguna los ficheros del proyecto y los tenemos localizados
+2. Dentro de nuestro recien creado entorno virtual, abrimos una nueva ventana en el terminal desde anaconda navigator
+3. Navegamos al directorio dónde está el proyecto y ejecutamos
 
     ```python
     git init
     dvc init
+    ```
+
+### Añadimos datos y configuramos el remoto
+
+```python
     dvc add data
     dvc remote add --default myremote gdrive://<ID_CARPETA_DE_GOOGLE_DRIVE> # Este es el id del final de la url al dar a compartir dentro de google drive
     dvc push data # ahora debería dejarnos subir nuestros datos a google drive
-    ```
+```
 
 ### Ejecutamos los pipelines
 
- Una vez que tenemos los datos y los ficheros creados necesitaremos crear las carpetas: partitions, metrics, models y evaluations.
+>Una vez que tenemos los datos y los ficheros creados. Friendly Reminder: Hemos creado los directorios: partitions, metrics, models y evaluations.
 
 ```python
 dvc dag
 dvc repro
 ```
 
-> Una vez probados las ficherso cambiaremos los datos añadiendo una nueva columan al csv y volveremos a ejecutar
+> Una vez probados las ficheros cambiaremos los datos añadiendo una nueva columna al csv y volveremos a ejecutar
 
 ```python
 dvc repro
@@ -102,4 +109,3 @@ Recordemos que solo mantenemos de forma manual el directorio data. Todos los dem
 ```python
 dvc push
 ```
-
