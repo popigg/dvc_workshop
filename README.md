@@ -62,7 +62,7 @@ También puedes instalarlas con pip
     ```python
     python3.8 -m venv .venv
     source .venv/bin/activate
-    pip install pandas numpy pytorch sklearn matplotlib dvc dvc[gdrive]     
+    pip install pandas numpy torch scikit-learn matplotlib dvc dvc-gdrive     
     ```
 
 3. Ahora abriendo el terminal puedes haber clonado con git repositorio o bien puedes haber descargado un zip.
