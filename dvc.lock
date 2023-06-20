@@ -50,18 +50,22 @@ stages:
     cmd: python prepare_data.py
     deps:
     - path: data
-      md5: a2d6138fe9bb427ff72139c2ae30497f.dir
-      size: 223824
+      hash: md5
+      md5: 72ae4cda1f643f99cf9a0af97f996228.dir
+      size: 223835
       nfiles: 3
     - path: prepare_data.py
+      hash: md5
       md5: 19f742de47483d3035c7efe47982e927
       size: 825
     outs:
     - path: partitions/train.csv
-      md5: 48804ddda0b22c96ad39d9ccd33b2986
-      size: 640100
+      hash: md5
+      md5: 2d774e6fa8d87023d3f779c1e3bd6745
+      size: 640150
     - path: partitions/validation.csv
-      md5: b7e768f6d31107b29aba86dd29e119bb
+      hash: md5
+      md5: d2688516cf8935b4a30ed8dc8b54afca
       size: 160000
   build@0:
     cmd: python train.py 500 0.003
@@ -242,28 +246,35 @@ stages:
     cmd: python eval_single.py
     deps:
     - path: models/linear_regression.pt
-      md5: 417d9de3545a3353932fdcae425b0d67
-      size: 1127
+      hash: md5
+      md5: 4e8c50c1db9af4d4072b4632440d4db2
+      size: 1167
     - path: partitions/validation.csv
-      md5: b7e768f6d31107b29aba86dd29e119bb
+      hash: md5
+      md5: d2688516cf8935b4a30ed8dc8b54afca
       size: 160000
     outs:
     - path: evaluations/chart.png
-      md5: b1ef66ceb94249fe95c9d8aecdfb253b
-      size: 20405
+      hash: md5
+      md5: 9179a1b5353f98796ff82edb04c187de
+      size: 22428
   train_single:
     cmd: python train_single.py
     deps:
     - path: partitions/train.csv
-      md5: 48804ddda0b22c96ad39d9ccd33b2986
-      size: 640100
+      hash: md5
+      md5: 2d774e6fa8d87023d3f779c1e3bd6745
+      size: 640150
     outs:
     - path: metrics/train_loss.png
-      md5: 2ec76963695e8fb9b1d87310a9eb4ed1
-      size: 19325
+      hash: md5
+      md5: 787a842b9ff77350923986797dd2f8cb
+      size: 19368
     - path: metrics/train_loss.txt
-      md5: 7d58b595540e88b689095df75a146532
-      size: 17794
+      hash: md5
+      md5: 5481705ca1c0461de2ee8cd9558de159
+      size: 18193
     - path: models/linear_regression.pt
-      md5: 417d9de3545a3353932fdcae425b0d67
-      size: 1127
+      hash: md5
+      md5: 4e8c50c1db9af4d4072b4632440d4db2
+      size: 1167
